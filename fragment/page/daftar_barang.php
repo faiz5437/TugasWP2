@@ -1,7 +1,7 @@
 <?php 
 include("conn.php");
 
-$data = $conn->query("SELECT * FROM tbl_barang order by id_barang asc");
+$data = $conn->query("SELECT b.*, o.nama_operator FROM tbl_barang b INNER JOIN tbl_operator o ON b.id_operator=o.id_operator and b.deleted_at is null ORDER BY b.id_barang desc");
 
 // print_r($data);
 ?>
@@ -33,10 +33,13 @@ $data = $conn->query("SELECT * FROM tbl_barang order by id_barang asc");
                                 <td><?=$value['kode_barang'];?></td>
                                 <td><?=$value['nama_barang'];?></td>
                                 <td><?=$value['satuan'];?></td>
-                                <td><?=$value['id_operator'];?></td>
+                                <td><?=$value['nama_operator'];?></td>
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-primary"><i class="far fa-edit"></i> Edit</button>
-                                    <button type="button" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i> Hapus</button>
+                                    <a href="index.php?hal=edit_barang&id=<?=$value['id_barang'];?>" class="btn btn-sm btn-primary">
+                                        <i class="far fa-edit"></i> 
+                                        Edit
+                                    </a>
+                                    <a href="index.php?hal=hapus_barang&id=<?=$value['id_barang'];?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i> Hapus</a>
                                 </td>
                             </tr>
                         <?php

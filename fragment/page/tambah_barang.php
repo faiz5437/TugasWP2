@@ -1,3 +1,31 @@
+<?php
+
+if(isset($_POST['simpan'])){
+    include("./conn.php");
+    date_default_timezone_set("Asia/Jakarta");
+    
+    $kode_barang = $_POST['kode_barang'];
+    $nama_barang = $_POST['nama_barang'];
+    $harga_barang = $_POST['harga_barang'];
+    $satuan = $_POST['satuan'];
+
+    $tgl = date('Y-m-d H:i:s', time());
+    // insert into table barang 
+    $query = "INSERT into tbl_barang (kode_barang, nama_barang, harga_barang, satuan, id_operator, created_at, updated_at) values ('$kode_barang', '$nama_barang', '$harga_barang', '$satuan','1','$tgl','$tgl')";
+
+    $insert = $conn->query($query);
+
+    if($insert){
+        ?>
+        <script>
+            alert("Berhasil menambahkan data");
+            window.location="index.php?hal=daftar_barang";
+        </script>
+        <?php
+    }
+}
+?>
+
 <div class="col-md-6">
 
     <div class="card card-primary">
@@ -5,37 +33,32 @@
             <h3 class="card-title">Tambah Barang</h3>
         </div>
 
-
-        <form>
+        <form method="post" action="">
             <div class="card-body">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <label for="exampleInputEmail1">Kode Barang</label>
+                    <input type="text" class="form-control" name="kode_barang" placeholder="Masukkan kode barang">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label for="exampleInputPassword1">Nama Barang</label>
+                    <input type="text" class="form-control" name="nama_barang" placeholder="Masukkan nama barang">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                            <span class="input-group-text">Upload</span>
-                        </div>
-                    </div>
+                    <label for="exampleInputPassword1">Harga Barang</label>
+                    <input type="number" class="form-control" name="harga_barang" placeholder="Masukan harga barang">
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Satuan</label>
+                    <select name="satuan" name="satuan" class="form-control">
+                        <option value="Pcs">PCS</option>
+                        <option value="Unit">Unit</option>
+                        <option value="Box">Box</option>
+                    </select>
                 </div>
             </div>
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
             </div>
         </form>
     </div>
