@@ -1,27 +1,33 @@
 <?php
-
-if(isset($_POST['simpan'])){
+include("./conn.php");
+$id_operator = $_GET['id'];
+$query_operator = "select nama_operator from tbl_operator where id_operator=$id_operator";
+$data_operator = $conn->query($query_operator);
+// var_dump($id_operator);
+// die();
+if (isset($_POST['simpan'])) {
     include("./conn.php");
     date_default_timezone_set("Asia/Jakarta");
-    
+
     $kode_barang = $_POST['kode_barang'];
     $nama_barang = $_POST['nama_barang'];
     $harga_barang = $_POST['harga_barang'];
     $satuan = $_POST['satuan'];
 
-    $tgl = date('Y-m-d H:i:s', time());
+    $tgl = date('Y-m-d H:i  :s', time());
     // insert into table barang 
-    $query = "INSERT into tbl_barang (kode_barang, nama_barang, harga_barang, satuan, id_operator, created_at, updated_at) values ('$kode_barang', '$nama_barang', '$harga_barang', '$satuan','1','$tgl','$tgl')";
+    $query = "INSERT into tbl_barang (kode_barang, nama_barang, harga_barang, satuan, id_operator, created_at, updated_at) values ('$kode_barang', '$nama_barang', '$harga_barang', '$satuan','$id_operator','$tgl','$tgl')";
 
     $insert = $conn->query($query);
 
-    if($insert){
-        ?>
+
+    if ($insert) {
+?>
         <script>
             alert("Berhasil menambahkan data");
-            window.location="index.php?hal=daftar_barang";
+            window.location = "index.php?hal=daftar_barang";
         </script>
-        <?php
+<?php
     }
 }
 ?>
@@ -35,6 +41,11 @@ if(isset($_POST['simpan'])){
 
         <form method="post" action="">
             <div class="card-body">
+                <label for="exampleInputEmail1">Nama Operator :
+                    <?php $operator = $data_operator->fetch_array();
+                    echo $operator['nama_operator'];
+                    ?>
+                </label>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Kode Barang</label>
                     <input type="text" class="form-control" name="kode_barang" placeholder="Masukkan kode barang">

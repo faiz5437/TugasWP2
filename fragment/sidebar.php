@@ -42,7 +42,7 @@
         </a>
         <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="index.php?hal=tambah_barang" class="nav-link">
+                <a href="index.php?hal=pilih_operator" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tambah Barang</p>
                 </a>
@@ -68,13 +68,13 @@
         </a>
         <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="index.php?hal=tambah_operator" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tambah Operator</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../layout/top-nav-sidebar.html" class="nav-link">
+                <a href="index.php?hal=daftar_operator" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Daftar Operator</p>
                 </a>
@@ -94,7 +94,7 @@
         </a>
         <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="index.php?hal=tambah_barang_masuk" class="nav-link">
+                <a href="index.php?hal=pilih_operator_masuk" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tambah Barang Masuk</p>
                 </a>
@@ -120,13 +120,13 @@
         </a>
         <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="index.php?hal=tambah_brg_keluar" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tambah Barang Keluar</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../layout/top-nav-sidebar.html" class="nav-link">
+                <a href="index.php?hal=daftar_barang_keluar" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Daftar Barang Keluar</p>
                 </a>

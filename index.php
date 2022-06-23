@@ -189,7 +189,7 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                   <?php include("fragment/sidebar.php");?>
+                    <?php include("fragment/sidebar.php"); ?>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
@@ -219,11 +219,11 @@
             <section class="content">
 
                 <?php
-                    if(isset($_GET['hal'])){
-                        include("fragment/page/".$_GET['hal'].".php");
-                    }else{
-                        include("fragment/page/home.php");
-                    }
+                if (isset($_GET['hal'])) {
+                    include("fragment/page/" . $_GET['hal'] . ".php");
+                } else {
+                    include("fragment/page/home.php");
+                }
                 ?>
 
 
@@ -270,21 +270,23 @@
     <script src="dist/js/demo.js"></script>
 
     <script>
-    $(function () {
-        $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
         });
-    });
     </script>
 </body>
 
