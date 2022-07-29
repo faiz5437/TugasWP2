@@ -13,7 +13,7 @@ ON b.id_operator=o.id_operator and b.deleted_at is null ORDER BY b.id_barang des
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Daftar Sisa Barang Harian</h3>
+        <h3 class="card-title">Daftar Sisa Barang Bulanan</h3>
     </div>
 
     <div class="card-body">
