@@ -2,12 +2,12 @@
 include("./conn.php");
 date_default_timezone_set("Asia/Jakarta");
 
-$query_operator = "SELECT * FROM `tbl_operator`;";
+$query_operator = "SELECT * FROM `tbl_operator` WHERE deleted_at is NULL;";
 
 $data_operator = $conn->query($query_operator);
 
 if (isset($_POST['simpan'])) {
-    $id_operator = $_POST['id_barang'];
+    $id_operator = $_POST['id_operator'];
     // insert into table barang masuk
 ?>
     <script>
@@ -29,8 +29,8 @@ if (isset($_POST['simpan'])) {
         <form method="post" action="">
             <div class="card-body">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Pilih Barang</label>
-                    <select name="id_barang" class="form-control">
+                    <label for="exampleInputEmail1">Pilih operator</label>
+                    <select name="id_operator" class="form-control">
                         <?php
 
                         while ($item = $data_operator->fetch_array()) {

@@ -2,7 +2,9 @@
 include("./conn.php");
 $id_operator = $_GET['id'];
 $query_operator = "select nama_operator from tbl_operator where id_operator=$id_operator";
-$data_operator = $conn->query($query_operator);
+$data_operator = $conn->query("select nama_operator from tbl_operator where id_operator=$id_operator");
+// var_dump($id_operator);
+// die;
 // var_dump($id_operator);
 // die();
 if (isset($_POST['simpan'])) {
@@ -41,11 +43,7 @@ if (isset($_POST['simpan'])) {
 
         <form method="post" action="">
             <div class="card-body">
-                <label for="exampleInputEmail1">Nama Operator :
-                    <?php $operator = $data_operator->fetch_array();
-                    echo $operator['nama_operator'];
-                    ?>
-                </label>
+
                 <div class="form-group">
                     <label for="exampleInputEmail1">Kode Barang</label>
                     <input type="text" class="form-control" name="kode_barang" placeholder="Masukkan kode barang">

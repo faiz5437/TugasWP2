@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (!isset($_SESSION['session_username'])) {
+    header("location:login.php");
+    exit();
+}
+// $getIdOperator = $_GET['id'];
+// var_dump($getIdOperator);
+// print_r($_SESSION);
+// print_r($_COOKIE); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -236,7 +247,7 @@
             <div class="float-right d-none d-sm-block">
                 <b>ARS University</b> 1.0.0
             </div>
-            <strong>Copyright &copy; 2014-2022 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2014-2022 <a href="https://adminlte.io">Muhamad Faiz</a>.</strong> All rights reserved.
         </footer>
 
         <!-- Control Sidebar -->

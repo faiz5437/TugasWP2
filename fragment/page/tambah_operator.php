@@ -1,5 +1,8 @@
 <?php
 
+$nama_operator = "";
+$email = "";
+$username = "";
 if (isset($_POST['simpan'])) {
     include("./conn.php");
     date_default_timezone_set("Asia/Jakarta");
@@ -11,7 +14,22 @@ if (isset($_POST['simpan'])) {
 
     $tgl = date('Y-m-d H:i:s', time());
     // insert into table barang 
-    $query = "INSERT INTO `tbl_operator` (`nama_operator`, `username`, `password`, `email`, `created_at`, `updated_at`) VALUES ('$nama_operator', '$username', '$password', '$email', '$tgl', '$tgl');";
+
+    $sql_u = "SELECT * FROM tbl_operator WHERE username='$username' and deleted_at is NULL";
+    $res_u = mysqli_query($conn, $sql_u);
+
+    if (mysqli_num_rows($res_u) > 0) {
+        $err = "Maaf ... Username Sudah Ada Silahkan Pakai Username Lain";
+        echo ("<script LANGUAGE='JavaScript'>
+    window.alert('Maaf Username Sudah Ada. Silahkan Coba Yang Lain');
+    window.location.href='index.php?hal=tambah_operator';
+    </script>");
+        // echo "<script type='text/javascript'>alert('$name_error');</script>";
+    } else {
+
+
+        $query = "INSERT INTO `tbl_operator` (`nama_operator`, `username`, `password`, `email`, `created_at`, `updated_at`) VALUES ('$nama_operator', '$username', '$password', '$email', '$tgl', '$tgl');";
+    }
 
     $insert = $conn->query($query);
 
@@ -37,15 +55,15 @@ if (isset($_POST['simpan'])) {
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama Operator</label>
-                    <input type="text" class="form-control" name="nama_operator" placeholder="Nama Operator">
+                    <input type="text" class="form-control" name="nama_operator" value="<?= $nama_operator ?>" placeholder="Nama Operator">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Email</label>
-                    <input type="text" class="form-control" name="email" placeholder="Email Operator">
+                    <input type="text" class="form-control" name="email" value="<?= $email ?>" placeholder="Email Operator">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Username</label>
-                    <input type="text" class="form-control" name="username" placeholder="Username">
+                    <input type="text" class="form-control" name="username" value="<?= $username ?>" placeholder="Username">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>

@@ -1,6 +1,9 @@
 <?php
 include("./conn.php");
 date_default_timezone_set("Asia/Jakarta");
+$id_operator = $_GET['id'];
+$query_operator = "select nama_operator from tbl_operator where id_operator=$id_operator";
+$data_operator = $conn->query($query_operator);
 
 $query_barang = "SELECT id_barang, kode_barang, nama_barang, satuan FROM tbl_barang where deleted_at is NULL ORDER BY nama_barang ASC";
 
@@ -8,11 +11,21 @@ $data_barang = $conn->query($query_barang);
 
 if (isset($_POST['simpan'])) {
     $id_barang = $_POST['id_barang'];
-    $qty_masuk = $_POST['qty_masuk'];
-    $id_operator = 1;
+    $qty_keluar = $_POST['qty_keluar'];
+
     $tgl = date('Y-m-d H:i:s', time());
+
+
+    $selectStok = "SELECT stok FROM tbl_barang  WHERE id_barang = '$id_barang'";
+    $getStokTblBarangTemp = $conn->query($selectStok);
+    $getStokTblBarang = $getStokTblBarangTemp->fetch_array();
+    $getStokBarang = $getStokTblBarang['stok'];
+
+    $jumlahStok = $getStokBarang - $qty_keluar;
+    $updateStok = "UPDATE `tbl_barang` SET `stok`='$jumlahStok' WHERE id_barang = '$id_barang';";
+    $updateStokJumlah = $conn->query($updateStok);
     // insert into table barang masuk
-    $query = "INSERT into tbl_barang_keluar (qty_keluar, id_barang, id_operator, created_at, updated_at) values ('$qty_masuk', '$id_barang', '$id_operator','$tgl','$tgl')";
+    $query = "INSERT into tbl_barang_keluar (qty_keluar, id_barang, id_operator, created_at, updated_at) values ('$qty_keluar', '$id_barang', '$id_operator','$tgl','$tgl')";
     $insert = $conn->query($query);
 
     if ($insert) {
@@ -49,7 +62,7 @@ if (isset($_POST['simpan'])) {
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Jumlah Barang</label>
-                    <input type="number" class="form-control" name="qty_masuk" placeholder="0" value="0" min="0">
+                    <input type="number" class="form-control" name="qty_keluar" placeholder="0" value="0" min="0">
                 </div>
 
             </div>

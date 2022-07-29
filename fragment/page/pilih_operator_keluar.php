@@ -12,7 +12,7 @@ if (isset($_POST['simpan'])) {
 ?>
     <script>
         alert("Berhasil memilih data operator ");
-        window.location = "index.php?hal=tambah_barang_masuk&id=<?= $id_operator; ?>";
+        window.location = "index.php?hal=tambah_brg_keluar&id=<?= $id_operator; ?>";
     </script>
 <?php
 }
