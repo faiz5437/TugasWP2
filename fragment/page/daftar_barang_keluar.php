@@ -49,17 +49,6 @@ ORDER BY m.id_barang_keluar desc");
 
 
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>#</th>
-                    <th>Tgl. keluar</th>
-                    <th>Barang</th>
-                    <th>Satuan</th>
-                    <th>QTY</th>
-                    <th>Operator</th>
-                    <th>Aksi</th>
-                </tr>
-            </tfoot>
         </table>
     </div>
 
